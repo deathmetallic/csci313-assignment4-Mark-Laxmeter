@@ -12,3 +12,16 @@
     margin: 0;
   }
   
+  .container-fluid {
+    margin: 20px;   
+  }
+
+  body {
+    background-color: azure !important;     
+
+  }
+
+  .accordion {
+    margin-right: 50px;
+  }
+  

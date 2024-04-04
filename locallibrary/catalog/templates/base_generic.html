@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     {% block title %}
-      <title>Local Library</title>
+      <title>Laxmeter's Library</title>
     {% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,6 +13,9 @@
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -28,16 +31,19 @@
             {% if user.is_staff %}
             <hr>
             <ul class="sidebar-nav">
-                <li>Staff</li>
-                 <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+                <li><b>Staff Links</b></li>
+                 <li><a href="{% url 'all-borrowed' %}">Renewals</a></li>
                 {% if perms.catalog.add_author %}
                  <li><a href="{% url 'author-create' %}">Create author</a></li>
                 {% endif %}
-            </ul>
+                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+              </ul>
             {% endif %}
 
             {% if user.is_authenticated %}
-     <li>User: {{ user.get_username }}</li>
+
+            <ul class="sidebar-nav">    
+     <b>Welcome, {{ user.get_username }}</b>
      <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
 
      <li>
@@ -49,6 +55,7 @@
      </li>
    {% else %}
      <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+     </ul>
    {% endif %}
           {% endblock %}
         </div>
